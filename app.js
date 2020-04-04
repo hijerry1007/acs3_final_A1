@@ -18,8 +18,13 @@ let getReqInfo = function getReqInfo(req, res, next) {
   array.forEach(item => {
     time += item
   })
-  console.log(`${time}| ${req.method} from ${req.url}`)
-  next()
+  if (req.url !== '/favicon.ico') {
+    console.log(`${time}| ${req.method} from ${req.url}`)
+    next()
+  }
+  else {
+    next()
+  }
 }
 
 app.use(getReqInfo)
